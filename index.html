@@ -16,8 +16,41 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					#PHP Bergen - Composer
+
+					https://getcomposer.org
+				</section>
+				<section>composer.json
+					<pre><code class="json">
+{
+    "require": {
+        "monolog/monolog": "^2.4.*"
+    }
+}
+
+					</code></pre>
+				</section>
+				<section>
+					<pre>
+						<code class="php">
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+require 'vendor/autoload.php';
+
+$logger = new Logger('phpBergen');
+$logger->pushHandler(
+  new StreamHandler(
+    __DIR__ . '/logs/demo.log',
+    Logger::WARNING
+  )
+);
+$logger->warning('PHP Bergen i progress');
+$logger->error('Something is borked.');
+
+						</code>
+					</pre>
+				</section>
 			</div>
 		</div>
 
