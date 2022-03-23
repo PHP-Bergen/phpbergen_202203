@@ -1,13 +1,10 @@
 <?php declare(strict_types=1);
 
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-
 require 'vendor/autoload.php';
 
-$logger = new Logger('phpBergen');
+$logger = new \Monolog\Logger('phpBergen');
 $logger->pushHandler(
-  new StreamHandler(
+  new \Monolog\Handler\StreamHandler(
     __DIR__ . '/logs/demo.log',
     Logger::WARNING
   )

@@ -2,11 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Phpbergen\User;
-use Phpbergen\UserName;
-
-$name = new UserName('James', 'Bond');
-$user = new User($name);
-
+$name = new \Phpbergen\UserName('James', 'Bond');
+$user = new \Phpbergen\User($name);
 print $user . PHP_EOL;
-

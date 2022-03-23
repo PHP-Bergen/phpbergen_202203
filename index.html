@@ -17,9 +17,52 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					#PHP Bergen - Composer
+					<h2>PHP Bergen - Composer</h2>
+					<p>https://getcomposer.org</p>
+				</section>
+				<section>
+					<h2>Package manager</h2>
+					<ul>
+						<li>apt (Advanced package tool)</li>
+						<li>npm (Node.js) / Bundler (Ruby)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>PHP package managers</h2>
+				</section>
+				<section>
+					<p class="r-fit-text">PECL (PHP Extension Community Library)</p>
+					<ul>
+						<li>PHP extensions</li>
+						<li>written in C</li>
+					</ul>
+					<pre><code>pecl install xdebug</code></pre>
+				</section>
+				<section>
+					<p class="r-fit-text">PEAR package manager</p>
+					<p>PHP Extension and Application Repository</p>
+					<ul>
+						<li>System wide</li>
+						<li>PEAR packages</li>
+						<li>Can install PECL extensions</li>
+						<li>CPAN-ish</li>
+					</ul>
 
-					https://getcomposer.org
+				</section>
+				<section>
+					<h2>Composer</h2>
+					<p class="r-fit-text">Application-level package manager</p>
+				</section>
+				<section>
+
+				</section>
+				<section>
+					<h2>Configuration</h2>
+					<pre><code class="json">
+					{
+					}
+					</code></pre>
+					<p class="r-fit-text">composer.json</p>
 				</section>
 				<section>composer.json
 					<pre><code class="json">
@@ -32,15 +75,14 @@
 					</code></pre>
 				</section>
 				<section>
+					<h1>Use of library</h1>
 					<pre>
 						<code class="php">
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
 require 'vendor/autoload.php';
 
-$logger = new Logger('phpBergen');
+$logger = new \Monolog\Logger('phpBergen');
 $logger->pushHandler(
-  new StreamHandler(
+  new \Monolog\Handler\StreamHandler(
     __DIR__ . '/logs/demo.log',
     Logger::WARNING
   )
