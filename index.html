@@ -38,20 +38,22 @@
 					</ul>
 					<pre><code>pecl install xdebug</code></pre>
 				</section>
+
 				<section>
 					<p class="r-fit-text">PEAR package manager</p>
 					<p>PHP Extension and Application Repository</p>
 					<ul>
+						<li>CPAN-ish</li>
 						<li>System wide</li>
 						<li>PEAR packages</li>
 						<li>Can install PECL extensions</li>
-						<li>CPAN-ish</li>
 					</ul>
-
 				</section>
+
 				<section>
 					<h2>Composer</h2>
 					<p class="r-fit-text">Application-level package manager</p>
+					<p>Current versions and performance</p>
 					<img src="media/composer.png" alt="Composer">
 				</section>
 
@@ -68,6 +70,7 @@
 						composer remove 'monolog/monolog'
 					</code></pre>
 				</section>
+
 				<section>composer.json
 					<pre><code class="json">
 {
@@ -75,7 +78,6 @@
         "monolog/monolog": "^2.4.*"
     }
 }
-
 					</code></pre>
 				</section>
 
@@ -83,6 +85,7 @@
 					<video controls src="media/phpunit_install.mp4"></video>
 					<p>Install dev packages</p>
 				</section>
+
 				<section>composer.json
 					<pre><code class="json">
 {
@@ -102,7 +105,18 @@
 				</section>
 
 				<section>
-					<h1>Use of library</h1>
+					<h2>Dependency wrangling</h2>
+					<pre><code class="bash">composer require "monolog/monolog:2.3.0"</code></pre>
+				</section>
+
+				<section>
+					<h2>Upgrade</h2>
+					<pre><code class="bash">composer outdated</code></pre>
+					<pre><code class="bash">composer update "monolog/monolog"</code></pre>
+				</section>
+
+				<section>
+					<h1>Use libraries</h1>
 					<pre>
 						<code class="php">
 require 'vendor/autoload.php';
@@ -117,6 +131,41 @@ $logger->pushHandler(
 $logger->warning('PHP Bergen i progress');
 						</code>
 					</pre>
+					<p>Example 1</p>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">PHP-FIG (Framework Interoperability Group)</h2>
+					<p><a href="https://www.php-fig.org/psr/">PSR - PHP Standards Recommendations</a></p>
+				</section>
+
+				<section>
+					<h2>Autoloading</h2>
+					<p><a href="https://www.php-fig.org/psr/psr-0/">PSR-0</a>/<a href="https://www.php-fig.org/psr/psr-4/">PSR-4</a></p>
+				</section>
+
+				<section>
+					<h2>PSR-3: Logger Interface</h2>
+					<p><a href="https://www.php-fig.org/psr/psr-3/">A common interface for logging libraries</a></p>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">composer.lock / composer.json</h2>
+					<pre><code class="json">
+						"name": "monolog/monolog",
+						"version": "2.4.0",
+						"source": {
+							"type": "git",
+							"url": "https://github.com/Seldaek/monolog.git",
+							"reference": "d7fd7450628561ba697b7097d86db72662f54aef"
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Build application</h2>
+					<pre><code class="bash">composer install --no-dev</code></pre>
+					<p>Output == "deployable artefact".<br>Example: Docker container, tarball, ftp, rsync</p>
 				</section>
 
 				<section>
@@ -125,8 +174,110 @@ $logger->warning('PHP Bergen i progress');
 					{
 					}
 					</code></pre>
-					<p class="r-fit-text">Minimum composer.json config</p>
+					<p class="r-fit-text">A minimum composer.json</p>
 				</section>
+
+				<section>
+					<h2>The PHP Package Repository</h2>
+					<p><a href="https://packagist.org/">Packagist</a> is the main Composer repository. It aggregates public PHP packages installable with Composer.</p>
+				</section>
+
+				<section>
+					<h2>Composer and git</h2>
+					<pre><code class="json">
+"repositories": [
+	{
+		"type": "composer",
+		"url": "https://packages.drupal.org/7"
+	},
+	{
+		"type": "vcs",
+		"url": "git@git.app.uib.no:uib-ub/skeivtarkiv/ska_tags.git"
+	}
+]
+					</code></pre>
+					<pre><code class="json">
+"require": {
+	"drupal/ska_tags": "^1.0"
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Satis</h2>
+					<p>Ultra-lightweight, static file-based version of packagist</p>
+					<pre><code class="json">
+{
+  "name": "My Repository",
+  "homepage": "http://packages.example.org",
+  "repositories": [
+    { "type": "vcs", "url": "https://github.com/mycompany/privaterepo" },
+    { "type": "vcs", "url": "http://svn.example.org/private/repo" },
+    { "type": "vcs", "url": "https://github.com/mycompany/privaterepo2" }
+  ],
+  "require-all": true
+}
+					</code></pre>
+					<p>satis.json</p>
+					<p>ref: <a href="https://getcomposer.org/doc/articles/handling-private-packages.md">Handling private packages</a></p>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">Upgrade PHP</h2>
+					<img src="media/php_versions.png">
+					<p>text</p>
+				</section>
+
+				<section>
+					<h2>Platform with composer</h2>
+					<pre><code class="json">
+"require": {
+	"php": ">=8.0.0",
+	"ext-curl": "*",
+	"ext-json": "*",
+}
+					</code></pre>
+					<pre><code class="json">
+"config": {
+	"sort-packages": true,
+	"platform": {
+		"php": "8.1"
+	}
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Check upgrade path</h2>
+					<pre><code class="bash">composer why-not php 8.2</code></pre>
+					<pre><code class="bash">composer why-not php 7.1</code></pre>
+				</section>
+
+				<section>
+					<h2>Supply Chain Security</h2>
+					<p>Supply chain attacks</p>
+					<img src="media/security.png" height="300px">
+					<p>Ref: <a href="https://arstechnica.com/information-technology/2022/03/sabotage-code-added-to-popular-npm-package-wiped-files-in-russia-and-belarus/">Code added to popular NPM package wiped files in Russia and Belarus</a></p>
+				</section>
+
+				<section>
+					<img src="media/wp_security.png">
+				</section>
+
+				<section>
+					<h2></h2>
+					<ul>
+					<li>https://getcomposer.org/doc/04-schema.md#minimum-stability</li>
+					<li>http://fabien.potencier.org/signing-project-releases.html</li>
+					<li>https://github.com/composer/composer/issues/4022</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Spørsmål?</h2>
+					<img src="media/highfive.jpg">
+				</section>
+
 
 			</div>
 		</div>
