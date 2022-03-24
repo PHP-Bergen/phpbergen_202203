@@ -6,7 +6,7 @@ $logger = new \Monolog\Logger('phpBergen');
 $logger->pushHandler(
   new \Monolog\Handler\StreamHandler(
     __DIR__ . '/logs/demo.log',
-    Logger::WARNING
+    \Monolog\Logger::WARNING
   )
 );
 

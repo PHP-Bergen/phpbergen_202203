@@ -52,22 +52,21 @@
 				<section>
 					<h2>Composer</h2>
 					<p class="r-fit-text">Application-level package manager</p>
+					<img src="media/composer.png" alt="Composer">
 				</section>
+
 				<section>
 					<video controls src="media/basic_install.mp4"></video>
 					<p>Basic installation</p>
 				</section>
+
 				<section>
-					<video controls src="media/downgrade.mp4"></video>
-					<p>Downgrade to older version</p>
-				</section>
-				<section>
-					<h2>Configuration</h2>
-					<pre><code class="json">
-					{
-					}
+					<pre><code>
+						composer require 'monolog/monolog'
 					</code></pre>
-					<p class="r-fit-text">composer.json</p>
+					<pre><code>
+						composer remove 'monolog/monolog'
+					</code></pre>
 				</section>
 				<section>composer.json
 					<pre><code class="json">
@@ -79,6 +78,29 @@
 
 					</code></pre>
 				</section>
+
+				<section>
+					<video controls src="media/phpunit_install.mp4"></video>
+					<p>Install dev packages</p>
+				</section>
+				<section>composer.json
+					<pre><code class="json">
+{
+    "require": {
+        "monolog/monolog": "^2.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<video controls src="media/downgrade.mp4"></video>
+					<p>Downgrade to older version</p>
+				</section>
+
 				<section>
 					<h1>Use of library</h1>
 					<pre>
@@ -93,12 +115,19 @@ $logger->pushHandler(
   )
 );
 $logger->warning('PHP Bergen i progress');
-
-$logger->error('Something is borked.');
-
 						</code>
 					</pre>
 				</section>
+
+				<section>
+					<h2>Configuration</h2>
+					<pre><code class="json">
+					{
+					}
+					</code></pre>
+					<p class="r-fit-text">Minimum composer.json config</p>
+				</section>
+
 			</div>
 		</div>
 
